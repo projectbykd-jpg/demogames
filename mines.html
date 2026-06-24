@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mines - LOLTOTO</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+text-align:center;
+}
+
+.grid{
+width:300px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+}
+
+.cell{
+height:55px;
+background:#1e293b;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:22px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>💣 Mines</h1>
+
+<div class="grid" id="grid"></div>
+
+<script>
+
+const grid=document.getElementById("grid");
+
+const bomb=Math.floor(Math.random()*25);
+
+for(let i=0;i<25;i++){
+
+let cell=document.createElement("div");
+
+cell.className="cell";
+
+cell.onclick=function(){
+
+if(i===bomb){
+
+cell.innerHTML="💣";
+alert("BOOM!");
+
+}else{
+
+cell.innerHTML="💎";
+}
+
+}
+
+grid.appendChild(cell);
+
+}
+
+</script>
+
+</body>
+</html>
