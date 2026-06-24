@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login Member | LOLTOTO</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body class="auth-page">
+
+<script>
+
+const user =
+JSON.parse(localStorage.getItem("user"));
+
+if(user){
+
+window.location.href="index.html";
+
+}
+
+</script>
+
+<div class="auth-card">
+
+<img
+src="https://i.ibb.co/9kwxLB1K/image.png"
+class="auth-logo"
+alt="LOLTOTO">
+
+<h2>LOGIN MEMBER</h2>
+
+<div style="position:relative">
+
+<input
+id="username"
+class="auth-input"
+type="text"
+placeholder="Masukkan Username">
+
+</div>
+
+<div style="position:relative">
+
+<input
+id="password"
+class="auth-input"
+type="password"
+placeholder="Masukkan Password">
+
+<i
+class="fas fa-eye"
+id="togglePassword"
+style="
+position:absolute;
+right:15px;
+top:17px;
+cursor:pointer;
+color:#FFD700;
+">
+</i>
+
+</div>
+
+<button
+id="loginBtn"
+class="auth-btn"
+onclick="loginNow()">
+
+LOGIN
+
+</button>
+
+<a
+href="register.html"
+class="auth-link">
+
+Belum punya akun?
+Daftar Sekarang
+
+</a>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+document
+.getElementById("togglePassword")
+.addEventListener("click",()=>{
+
+const password =
+document.getElementById("password");
+
+if(password.type==="password"){
+
+password.type="text";
+
+}else{
+
+password.type="password";
+
+}
+
+});
+
+async function loginNow(){
+
+const btn =
+document.getElementById("loginBtn");
+
+btn.disabled=true;
+
+btn.innerHTML=
+'<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+try{
+
+await loginUser();
+
+}catch(err){
+
+console.log(err);
+
+alert(
+"Terjadi kesalahan"
+);
+
+}
+
+btn.disabled=false;
+
+btn.innerHTML="LOGIN";
+
+}
+
+document
+.getElementById("password")
+.addEventListener("keypress",(e)=>{
+
+if(e.key==="Enter"){
+
+loginNow();
+
+}
+
+});
+
+document
+.getElementById("username")
+.addEventListener("keypress",(e)=>{
+
+if(e.key==="Enter"){
+
+loginNow();
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
