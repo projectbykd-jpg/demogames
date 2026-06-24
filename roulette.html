@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Roulette - LOLTOTO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div style="padding:50px;text-align:center">
+
+<h1>🎯 Roulette</h1>
+
+<p>Game Roulette LOLTOTO</p>
+
+<button onclick="spin()">SPIN</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+<script>
+function spin(){
+let num=Math.floor(Math.random()*37);
+document.getElementById("result").innerHTML=
+"Hasil Roulette : "+num;
+}
+</script>
+
+</body>
+</html>
