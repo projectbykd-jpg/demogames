@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Baccarat - LOLTOTO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div style="padding:50px;text-align:center">
+
+<h1>🃏 Baccarat</h1>
+
+<button onclick="play()">DRAW</button>
+
+<h2 id="hasil"></h2>
+
+</div>
+
+<script>
+
+function play(){
+
+let player=Math.floor(Math.random()*10);
+let banker=Math.floor(Math.random()*10);
+
+let win="Tie";
+
+if(player>banker) win="Player";
+if(banker>player) win="Banker";
+
+document.getElementById("hasil").innerHTML=
+`Player ${player} - Banker ${banker}<br>${win} Win`;
+
+}
+
+</script>
+
+</body>
+</html>
