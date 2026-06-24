@@ -3,7 +3,7 @@
 // ========================================
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbzII1ekyINbflVxrIfT2vihMtg0uOlM6aFXTHepoD9dXpFt4xeesC5iobhHIb-WA9xmYw/exec";
+"https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSV3dTry3cZigoqcB0TzwO0Bmtk_9cJl5vBUs58ha_JEP26lMM0hddjr6lwJ3jw0lwYamfsztHopliqE91GoCOLjl6Uy2Gm-RKoC7BDg4RBd8XxQhtkV5FkRTpPbLzz-odNfDR37bdPhRtxTtIX2oUtQnQYQSdN-HmDCV8xku9QCcFKQbibXtU7F63BUkkhm8yhKZkRisbP2P_joFVVKZWWXaiZLNJAXplMql7h2_e1k9icjv1XF8VzyCNib7jqQ1SVwTVyg2qD2uBSgHAWPsSBlx7ILw&lib=M0OIgFrzPoJPqVhXQphOPAVHS06Q0UWDr";
 
 
 // ========================================
