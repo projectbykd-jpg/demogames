@@ -1,29 +1,315 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<title>Roulette - LOLTOTO</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>LOLTOTO Roulette Demo</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:
+linear-gradient(180deg,#050505,#111827);
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.container{
+width:100%;
+max-width:900px;
+text-align:center;
+}
+
+.logo{
+width:220px;
+margin-bottom:20px;
+}
+
+.balance{
+background:rgba(255,215,0,.08);
+border:1px solid rgba(255,215,0,.2);
+padding:15px;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+.balance h2{
+color:#FFD700;
+}
+
+.wheel-wrapper{
+position:relative;
+display:flex;
+justify-content:center;
+margin:30px 0;
+}
+
+.pointer{
+position:absolute;
+top:-15px;
+font-size:40px;
+color:#FFD700;
+z-index:10;
+}
+
+.wheel{
+
+width:350px;
+height:350px;
+
+border-radius:50%;
+
+border:10px solid #FFD700;
+
+background:
+conic-gradient(
+#d62828 0deg 10deg,
+#111 10deg 20deg,
+#d62828 20deg 30deg,
+#111 30deg 40deg,
+#d62828 40deg 50deg,
+#111 50deg 60deg,
+#d62828 60deg 70deg,
+#111 70deg 80deg,
+#d62828 80deg 90deg,
+#111 90deg 100deg,
+#d62828 100deg 110deg,
+#111 110deg 120deg,
+#d62828 120deg 130deg,
+#111 130deg 140deg,
+#d62828 140deg 150deg,
+#111 150deg 160deg,
+#d62828 160deg 170deg,
+#111 170deg 180deg,
+#d62828 180deg 190deg,
+#111 190deg 200deg,
+#d62828 200deg 210deg,
+#111 210deg 220deg,
+#d62828 220deg 230deg,
+#111 230deg 240deg,
+#d62828 240deg 250deg,
+#111 250deg 260deg,
+#d62828 260deg 270deg,
+#111 270deg 280deg,
+#d62828 280deg 290deg,
+#111 290deg 300deg,
+#d62828 300deg 310deg,
+#111 310deg 320deg,
+#d62828 320deg 330deg,
+#111 330deg 340deg,
+#00a86b 340deg 360deg
+);
+
+transition:
+transform 6s cubic-bezier(.15,.8,.15,1);
+
+box-shadow:
+0 0 50px rgba(255,215,0,.25);
+}
+
+.center{
+position:absolute;
+width:90px;
+height:90px;
+background:#FFD700;
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+color:#000;
+}
+
+button{
+
+background:
+linear-gradient(
+135deg,
+#FFD700,
+#FFB800
+);
+
+border:none;
+
+padding:15px 40px;
+
+font-size:18px;
+
+font-weight:bold;
+
+border-radius:15px;
+
+cursor:pointer;
+
+margin-top:20px;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+.result{
+
+margin-top:25px;
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#FFD700;
+}
+
+.history{
+
+margin-top:30px;
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+
+.ball{
+
+width:40px;
+height:40px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-weight:bold;
+
+background:#222;
+}
+
+</style>
 </head>
+
 <body>
 
-<div style="padding:50px;text-align:center">
+<div class="container">
 
-<h1>🎯 Roulette</h1>
+<img
+src="https://i.ibb.co/9kwxLB1K/image.png"
+class="logo">
 
-<p>Game Roulette LOLTOTO</p>
+<div class="balance">
+<h2>Saldo Demo</h2>
+<h1 id="saldo">Rp 1.000.000</h1>
+</div>
 
-<button onclick="spin()">SPIN</button>
+<div class="wheel-wrapper">
 
-<h2 id="result"></h2>
+<div class="pointer">▼</div>
+
+<div class="wheel" id="wheel"></div>
+
+<div class="center">
+LOLTOTO
+</div>
+
+</div>
+
+<button onclick="spinWheel()">
+SPIN
+</button>
+
+<div class="result" id="result">
+Tekan SPIN
+</div>
+
+<div class="history" id="history"></div>
 
 </div>
 
 <script>
-function spin(){
-let num=Math.floor(Math.random()*37);
-document.getElementById("result").innerHTML=
-"Hasil Roulette : "+num;
+
+let rotation=0;
+
+let history=[];
+
+function spinWheel(){
+
+const wheel=
+document.getElementById("wheel");
+
+const result=
+Math.floor(Math.random()*37);
+
+rotation +=
+3600 +
+Math.floor(Math.random()*360);
+
+wheel.style.transform=
+`rotate(${rotation}deg)`;
+
+setTimeout(()=>{
+
+document.getElementById(
+"result"
+).innerHTML=
+`Hasil : ${result}`;
+
+history.unshift(result);
+
+if(history.length>10)
+history.pop();
+
+renderHistory();
+
+if(typeof saveTransaction==="function"){
+
+saveTransaction(
+"Roulette Demo",
+0,
+"SPIN",
+result
+);
+
 }
+
+},6000);
+
+}
+
+function renderHistory(){
+
+let html="";
+
+history.forEach(item=>{
+
+html+=`
+<div class="ball">
+${item}
+</div>
+`;
+
+});
+
+document.getElementById(
+"history"
+).innerHTML=html;
+
+}
+
 </script>
 
 </body>
