@@ -1,91 +1,362 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOLTOTO - Situs Game Online</title>
+
+<title>LOLTOTO | Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-<header>
-    <div class="logo-box">
-        <img src="https://i.ibb.co/9kwxLB1K/image.png" alt="LOLTOTO">
-    </div>
+<script>
 
-    <div class="menu">
-        <a href="#home">Home</a>
-        <a href="#games">Games</a>
-        <a href="#promo">Promo</a>
-        <a href="#contact">Contact</a>
-    </div>
+const user =
+JSON.parse(localStorage.getItem("user"));
 
-    <button class="login-btn">LOGIN</button>
+if(!user){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+<header class="header">
+
+<div class="logo-area">
+
+<img
+src="https://i.ibb.co/9kwxLB1K/image.png"
+class="logo"
+alt="LOLTOTO">
+
+</div>
+
+<div class="user-panel">
+
+<div class="user-info">
+
+<div id="usernameDisplay">
+Loading...
+</div>
+
+<div id="saldoDisplay">
+Rp 0
+</div>
+
+</div>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
 </header>
 
+<div class="running-text">
+
+<marquee>
+
+🎉 Selamat datang di LOLTOTO • Bonus Member Baru • Dashboard Realtime • Deposit & Withdraw Tercatat Otomatis
+
+</marquee>
+
+</div>
+
 <section class="hero">
-    <div class="overlay"></div>
 
-    <div class="hero-content">
-        <h1>WELCOME TO LOLTOTO</h1>
-        <p>Platform Game Online Modern dengan pengalaman bermain terbaik.</p>
+<div class="hero-overlay"></div>
 
-        <div class="hero-btns">
-            <button class="register-btn">DAFTAR SEKARANG</button>
-            <button class="download-btn">DOWNLOAD APP</button>
-        </div>
-    </div>
+<div class="hero-content">
+
+<h1>LOLTOTO</h1>
+
+<p>
+Platform Game Demo Modern dengan Google Sheet Realtime
+</p>
+
+<div class="hero-buttons">
+
+<button onclick="openDeposit()">
+
+<i class="fas fa-wallet"></i>
+
+Deposit
+
+</button>
+
+<button onclick="openWithdraw()">
+
+<i class="fas fa-money-bill-wave"></i>
+
+Withdraw
+
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="games" class="games">
+<section class="promo">
 
-    <h2>GAME POPULER</h2>
+<div class="promo-card">
+<h3>🎁 BONUS MEMBER BARU</h3>
+<p>100% hingga Rp 1.000.000</p>
+</div>
 
-    <div class="game-grid">
+<div class="promo-card">
+<h3>💎 CASHBACK HARIAN</h3>
+<p>5% Setiap Hari</p>
+</div>
 
-        <a href="roulette.html" class="game-card">
-            <i class="fas fa-circle-dot"></i>
-            <h3>Roulette</h3>
-        </a>
+<div class="promo-card">
+<h3>🚀 REFERRAL BONUS</h3>
+<p>Komisi Tanpa Batas</p>
+</div>
 
-        <a href="baccarat.html" class="game-card">
-            <i class="fas fa-coins"></i>
-            <h3>Baccarat</h3>
-        </a>
+</section>
 
-        <a href="mines.html" class="game-card">
-            <i class="fas fa-bomb"></i>
-            <h3>Mines</h3>
-        </a>
+<section class="games">
 
-    </div>
+<h2>GAME POPULER</h2>
+
+<div class="game-grid">
+
+<a href="mines.html" class="game-card">
+
+<i class="fas fa-bomb"></i>
+
+<h3>MINES</h3>
+
+<span>Main Sekarang</span>
+
+</a>
+
+<a href="roulette.html" class="game-card">
+
+<i class="fas fa-circle-dot"></i>
+
+<h3>ROULETTE</h3>
+
+<span>Main Sekarang</span>
+
+</a>
+
+<a href="baccarat.html" class="game-card">
+
+<i class="fas fa-coins"></i>
+
+<h3>BACCARAT</h3>
+
+<span>Main Sekarang</span>
+
+</a>
+
+</div>
 
 </section>
 
 <section class="stats">
 
-    <div class="stat">
-        <h3>15.000+</h3>
-        <span>Member Online</span>
-    </div>
+<div class="stat-card">
+<h2>15K+</h2>
+<span>Member Online</span>
+</div>
 
-    <div class="stat">
-        <h3>24/7</h3>
-        <span>Customer Service</span>
-    </div>
+<div class="stat-card">
+<h2>24/7</h2>
+<span>Support</span>
+</div>
 
-    <div class="stat">
-        <h3>99.9%</h3>
-        <span>Server Uptime</span>
-    </div>
+<div class="stat-card">
+<h2>99.9%</h2>
+<span>Uptime</span>
+</div>
+
+<div class="stat-card">
+<h2>Realtime</h2>
+<span>Google Sheet</span>
+</div>
 
 </section>
 
+<!-- DEPOSIT -->
+
+<div id="depositModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-btn"
+onclick="closeDeposit()">
+✕
+</span>
+
+<h2>Deposit</h2>
+
+<input
+type="number"
+id="depositAmount"
+placeholder="Masukkan Nominal">
+
+<button onclick="deposit()">
+
+Kirim Deposit
+
+</button>
+
+</div>
+
+</div>
+
+<!-- WITHDRAW -->
+
+<div id="withdrawModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-btn"
+onclick="closeWithdraw()">
+✕
+</span>
+
+<h2>Withdraw</h2>
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Masukkan Nominal">
+
+<button onclick="withdraw()">
+
+Kirim Withdraw
+
+</button>
+
+</div>
+
+</div>
+
 <footer>
-    © 2026 LOLTOTO. All Rights Reserved.
+
+© 2026 LOLTOTO
+
 </footer>
 
 <script src="script.js"></script>
+
+<script>
+
+window.onload = async function(){
+
+loadUser();
+
+refreshBalance();
+
+try{
+
+const user =
+JSON.parse(
+localStorage.getItem("user")
+);
+
+if(user){
+
+await fetch(API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+
+action:"visit",
+
+username:user.username,
+
+page:"Dashboard"
+
+})
+});
+
+}
+
+}catch(e){
+
+console.log(e);
+
+}
+
+};
+
+function openDeposit(){
+
+document
+.getElementById("depositModal")
+.style.display="flex";
+
+}
+
+function closeDeposit(){
+
+document
+.getElementById("depositModal")
+.style.display="none";
+
+}
+
+function openWithdraw(){
+
+document
+.getElementById("withdrawModal")
+.style.display="flex";
+
+}
+
+function closeWithdraw(){
+
+document
+.getElementById("withdrawModal")
+.style.display="none";
+
+}
+
+window.onclick=function(e){
+
+if(
+e.target==
+document.getElementById("depositModal")
+){
+
+closeDeposit();
+
+}
+
+if(
+e.target==
+document.getElementById("withdrawModal")
+){
+
+closeWithdraw();
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
